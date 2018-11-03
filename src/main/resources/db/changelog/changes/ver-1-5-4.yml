@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-5-4
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-5-3
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-5-3.yml
+      changes:
+        - sqlFile:
+            dbms: mysql
+            path: ../scripts/migrate_student.sql
+            relativeToChangelogFile: true

@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-2-0
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-1-0
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-1-0.yml
+      changes:
+      - createTable:
+          tableName: class
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: class_number
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
+                name: class_subject
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
+                name: professor_id
+                type: int
+            - column:
+                name: department_id
+                type: int

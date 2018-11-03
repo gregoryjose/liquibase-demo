@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-4-1
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-4-0
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-4-0.yml
+      changes:
+        - update:
+            tableName: class
+            columns:
+              - column:
+                  name: professor_id
+                  constraints:
+                    foreignKeyName: fk_class_professor
+                    references: professor(id)
+              - column:
+                  name: department_id
+                  constraints:
+                    foreignKeyName: fk_class_department
+                    references: department(id)

@@ -1,0 +1,13 @@
+databaseChangeLog:
+- changeSet:
+    id: ver-1-6-2
+    author: greg
+    preConditions:
+      onFail: HALT
+      changeSetExecuted:
+        id: ver-1-6-1
+        author: greg
+        changeLogFile: db/changelog/changes/ver-1-6-1.yml
+    changes:
+    - dropTable:
+        tableName: sample

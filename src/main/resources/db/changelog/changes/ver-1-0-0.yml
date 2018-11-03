@@ -1,0 +1,11 @@
+# initial database using sql
+
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-0-0
+      author: david
+      changes:
+      - sqlFile:
+          dbms: mysql
+          path: ../scripts/liquibase_exam.sql
+          relativeToChangelogFile: true

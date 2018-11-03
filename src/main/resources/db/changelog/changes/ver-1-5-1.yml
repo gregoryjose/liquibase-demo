@@ -1,0 +1,17 @@
+# migration changes using sql
+
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-5-1
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-5-0
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-5-0.yml
+      changes:
+        - sqlFile:
+            dbms: mysql
+            path: ../scripts/migrate_department.sql
+            relativeToChangelogFile: true

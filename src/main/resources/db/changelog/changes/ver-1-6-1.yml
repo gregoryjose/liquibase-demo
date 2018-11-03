@@ -1,0 +1,27 @@
+databaseChangeLog:
+- changeSet:
+    id: ver-1-6-1
+    author: greg
+    preConditions:
+      onFail: HALT
+      changeSetExecuted:
+        id: ver-1-6-0
+        author: david
+        changeLogFile: db/changelog/changes/ver-1-6-0.yml
+    changes:
+    - createTable:
+        tableName: sample
+        columns:
+        - column:
+            name: id
+            type: int
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: name
+            type: varchar(255)
+            constraints:
+              nullable: false
+              unique: true

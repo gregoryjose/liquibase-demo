@@ -1,0 +1,1 @@
+INSERT INTO department (department_name) (SELECT DISTINCT class_department FROM school) UNION (SELECT DISTINCT professor_department FROM school);

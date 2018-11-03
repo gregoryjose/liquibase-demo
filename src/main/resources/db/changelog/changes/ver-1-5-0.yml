@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-5-0
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-4-2
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-4-2.yml
+      changes:
+        - createTable:
+            tableName: student_class
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_student_class
+                    references: student(id)
+              - column:
+                  name: class_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_class_student
+                    references: class(id)

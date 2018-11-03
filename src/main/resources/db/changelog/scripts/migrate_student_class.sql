@@ -1,0 +1,1 @@
+INSERT INTO student_class (student_id, class_id) (SELECT student.id, class.id FROM student, class INNER JOIN school WHERE student.student_number = school.student_number AND class.class_number = school.class_number);

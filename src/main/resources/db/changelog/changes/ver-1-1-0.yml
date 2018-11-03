@@ -1,0 +1,41 @@
+# change set using yaml
+
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-1-0
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-0-0
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-0-0.yml
+      changes:
+      - createTable:
+          tableName: student
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: firstName
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
+                name: lastName
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true
+            - column:
+                name: student_number
+                type: varchar(255)
+                constraints:
+                  nullable: false
+                  unique: true

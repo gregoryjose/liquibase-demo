@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: ver-1-5-3
+      author: david
+      preConditions:
+        onFail: HALT
+        changeSetExecuted:
+          id: ver-1-5-2
+          author: david
+          changeLogFile: db/changelog/changes/ver-1-5-2.yml
+      changes:
+        - sqlFile:
+            dbms: mysql
+            path: ../scripts/migrate_class.sql
+            relativeToChangelogFile: true
+        - update:
+            tableName: class
+            columns:
+              - column:
+                  name: department_id
+                  valueComputed: (select d.id from department d where d.department_name = (select distinct s.class_department from school s where s.class_number = class.class_number))
+        - update:
+            tableName: class
+            columns:
+              - column:
+                  name: professor_id
+                  valueComputed: (select p.id from professor p where p.name = (select distinct s.professor_name from school s where s.class_number = class.class_number))
